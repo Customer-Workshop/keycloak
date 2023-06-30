@@ -13,13 +13,76 @@ Options:
 --optimized          Use this option to achieve an optimal startup time if you have previously
                        built a server image using the 'build' command.
 
+Storage (Experimental):
+
+--storage <type>     Experimental: Sets the default storage mechanism for all areas. Possible
+                       values are: jpa, chm, hotrod, file.
+--storage-area-auth-session <type>
+                     Experimental: Sets a storage mechanism for authentication sessions. Possible
+                       values are: jpa, chm, hotrod, file.
+--storage-area-authorization <type>
+                     Experimental: Sets a storage mechanism for authorizations. Possible values
+                       are: jpa, chm, hotrod, file.
+--storage-area-client <type>
+                     Experimental: Sets a storage mechanism for clients. Possible values are: jpa,
+                       chm, hotrod, file.
+--storage-area-client-scope <type>
+                     Experimental: Sets a storage mechanism for client scopes. Possible values are:
+                       jpa, chm, hotrod, file.
+--storage-area-event-admin <type>
+                     Experimental: Sets a storage mechanism for admin events. Possible values are:
+                       jpa, chm, hotrod, file.
+--storage-area-event-auth <type>
+                     Experimental: Sets a storage mechanism for authentication and authorization
+                       events. Possible values are: jpa, chm, hotrod, file.
+--storage-area-group <type>
+                     Experimental: Sets a storage mechanism for groups. Possible values are: jpa,
+                       chm, hotrod, file.
+--storage-area-login-failure <type>
+                     Experimental: Sets a storage mechanism for login failures. Possible values
+                       are: jpa, chm, hotrod, file.
+--storage-area-realm <type>
+                     Experimental: Sets a storage mechanism for realms. Possible values are: jpa,
+                       chm, hotrod, file.
+--storage-area-role <type>
+                     Experimental: Sets a storage mechanism for roles. Possible values are: jpa,
+                       chm, hotrod, file.
+--storage-area-single-use-object <type>
+                     Experimental: Sets a storage mechanism for single use objects. Possible values
+                       are: jpa, chm, hotrod.
+--storage-area-user <type>
+                     Experimental: Sets a storage mechanism for users. Possible values are: jpa,
+                       chm, hotrod, file.
+--storage-area-user-session <type>
+                     Experimental: Sets a storage mechanism for user and client sessions. Possible
+                       values are: jpa, chm, hotrod, file.
+--storage-deployment-state-version-seed <type>
+                     Experimental: Secret that serves as a seed to mask the version number of
+                       Keycloak in URLs. Need to be identical across all servers in the cluster.
+                       Will default to a random number generated when starting the server which is
+                       secure but will lead to problems when a loadbalancer without sticky sessions
+                       is used or nodes are restarted.
+--storage-file-dir <dir>
+                     Experimental: Root directory for file map store.
+--storage-hotrod-host <host>
+                     Experimental: Sets the host of the Infinispan server.
+--storage-hotrod***
+                     Experimental: Sets the password of the Infinispan user.
+--storage-hotrod-port <port>
+                     Experimental: Sets the port of the Infinispan server.
+--storage-hotrod-username <username>
+                     Experimental: Sets the username of the Infinispan user.
+--storage-jpa-db <type>
+                     Experimental: The database vendor for jpa map storage. Possible values are:
+                       postgres, cockroach. Default: postgres.
+
 Database:
 
 --db <vendor>        The database vendor. Possible values are: dev-file, dev-mem, mariadb, mssql,
                        mysql, oracle, postgres. Default: dev-file.
 --db-driver <driver> The fully qualified class name of the JDBC driver. If not set, a default
                        driver is set accordingly to the chosen database.
---db-password <password>
+--db***
                      The password of the database user.
 --db-pool-initial-size <size>
                      The initial size of the connection pool.
@@ -73,7 +136,7 @@ Config:
 
 --config-keystore <config-keystore>
                      Specifies a path to the KeyStore Configuration Source.
---config-keystore-password <config-keystore-password>
+--config-keystore***
                      Specifies a password to the KeyStore Configuration Source.
 --config-keystore-type <config-keystore-type>
                      Specifies a type of the KeyStore Configuration Source. Default: PKCS12.
@@ -139,5 +202,5 @@ Export:
                        same_file, different_files. Default: different_files.
 --users-per-file <number>
                      Set the number of users per file. It is used only if 'users' is set to
-                       'different_files'. Increasing this number leads to exponentially increasing
+                       'different_files'. Increasing this number leads to exponentially increased
                        export times. Default: 50.
